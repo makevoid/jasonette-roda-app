@@ -5,7 +5,8 @@ module Jsonify
   end
 
   def to_json(json)
-    Oj.dump
+    # Oj.dump json
+    json.to_json
   end
 
   # alias json

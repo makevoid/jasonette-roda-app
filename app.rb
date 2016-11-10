@@ -8,13 +8,16 @@ class App < Roda
     # just a json root
     #
     r.root {
-      to_json({
+      # to_json({
+      {
         "$jason": {
           head: {
             title: "SampleApp"
           },
           body: View
-      })
+        }
+      # })
+      }.to_json
     }
 
     # use roda to generate your json-based-app

@@ -1,5 +1,7 @@
 # ---------------------------------------------------------------
 
+# TODO: make local
+
 imgDataAddr = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
 &markers=color:blue%7Clabel:S%7C40.702147,-74.015794"
 
@@ -22,8 +24,8 @@ View = {
           type: "label",
           text: "Address"
         }, {
-          type:"image",
-          url: imgDataAddr
+          type: "image",
+          url:  imgDataAddr
         }, {
           type: "label",
           text: address
@@ -31,8 +33,8 @@ View = {
           type: "label",
           text: "Private Key"
         }, {
-          type:"image",
-          url: imgDataKey
+          type: "image",
+          url:  imgDataKey
         }, {
           type: "label",
           text: "Built with Jasonette and Runkit - @makevoid"
