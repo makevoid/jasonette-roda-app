@@ -1,3 +1,5 @@
+# main view and main app data
+
 URLS = {
   home:    "https://raw.githubusercontent.com/Jasonette/Twitter-UI-example/master/home.json",
   screen1: "https://raw.githubusercontent.com/Jasonette/Twitter-UI-example/master/home.json",

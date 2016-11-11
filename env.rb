@@ -9,6 +9,7 @@ require_relative 'lib/jsonify'
 
 
 
+require_relative 'styles'
 
 # require main components here (note: order is relevant)
 

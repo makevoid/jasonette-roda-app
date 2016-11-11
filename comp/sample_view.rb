@@ -19,6 +19,8 @@ imgDataKey = imgDataAddr2
 
 # ---------------------------------------------------------------
 
+# sample default view
+
 View = {
 
   header: { title: "SampleApp", style: { shy: true } },

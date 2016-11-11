@@ -1,3 +1,4 @@
+# doc: https://jasonette.github.io/documentation/components/#map
 
 def map_point(point)
   "#{point.fetch :lat}, #{point.fetch :lng}"
