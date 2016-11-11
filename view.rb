@@ -1,92 +1,27 @@
-# ---------------------------------------------------------------
-
-# TODO: make local
-
-
-# imgDataAddr = "http://localhost:3002/image1"
-
-api_key = "AIzaSyDDS8H3WiuXrlxLNVroLxYBIF8XZ1trm4s"
-imgDataAddr = "http://maps.googleapis.com/maps/api/staticmap?center=NY&zoom=13&size=700x350&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&key=#{api_key}&a=a.jpg"
-
-imgDataAddr2 = "http://maps.googleapis.com/maps/api/staticmap?center=NY&zoom=9&size=700x350&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&key=#{api_key}&a=a.jpg"
-
-# imgDataAddr = "https://s-media-cache-ak0.pinimg.com/236x/76/61/8d/76618d35a6820a8a83e09dc1b0bd5333.jpg"
-
-
-address = "ny ny!"
-
-imgDataKey = imgDataAddr2
-
-
-
-# ---------------------------------------------------------------
-
-View = {
-
-  header: { title: "SampleApp", style: { shy: true } },
-
-  sections: [
-    {
-      items: [
-        {
-          type: "button",
-          text: "reloadd",
-          style: {
-            background: "#f4bb00",
-            size: "24"
-          },
-          action: {
-            type: "$reload"
-          }
-        },
-        {
-          type: "label",
-          text: "Address"
-        }, {
-          type: "image",
-          url:  imgDataAddr
-        }, {
-          type: "label",
-          text: address
-        }, {
-          type: "label",
-          text: "Private Key"
-        }, {
-          type: "image",
-          url:  imgDataKey
-        }, {
-          type: "label",
-          text: "Built with Jasonette and Runkit - @makevoid"
-        }
-      ]
-    }
-  ]
-
+URLS = {
+  home:    "https://raw.githubusercontent.com/Jasonette/Twitter-UI-example/master/home.json",
+  screen1: "https://raw.githubusercontent.com/Jasonette/Twitter-UI-example/master/home.json",
 }
 
+Title = "Componentized Jasonette App"
 
-# View next
-#
-# :ruby
-#   imgDataAddr = "http://"
-#   mapAddr     = "http://"
-#   # imgDataAddr = "base64"
-#   # imgDataKey  = QrCode.make private_key
-#
-# %header{ title: "SampleApp", style: { shy: true } }
-# %sections
-#   %items
-#     # - for item in section.items
-#     %label "Address"
-#     %img{ url: imgDataAddr }
-#
-#
-#     %label "Address (static map with link)"
-#     %a{ href: "" }
-#       %img{ url: mapAddr }
-#
-#
-# etc...
-#
-#   {type: "label", text: "Private Key"},
-#   {type:"image",  url: imgDataKey},
+
+# hero view
+
+Body = Hero(
+  title: Title,
+  text:  "Template generated via Ruby Components",
+)
+
+# map view
+
+require_relative 'comp/map_sample'
+Body = MapSample()
+
+
+# tabbed layout
+
+View = TabbedLayout(
+  title: Title,
+  body:  Body,
+)
