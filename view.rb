@@ -2,12 +2,20 @@
 
 # TODO: make local
 
-imgDataAddr = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-&markers=color:blue%7Clabel:S%7C40.702147,-74.015794"
+
+# imgDataAddr = "http://localhost:3002/image1"
+
+api_key = "AIzaSyDDS8H3WiuXrlxLNVroLxYBIF8XZ1trm4s"
+imgDataAddr = "http://maps.googleapis.com/maps/api/staticmap?center=NY&zoom=13&size=700x350&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&key=#{api_key}&a=a.jpg"
+
+imgDataAddr2 = "http://maps.googleapis.com/maps/api/staticmap?center=NY&zoom=9&size=700x350&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&key=#{api_key}&a=a.jpg"
+
+# imgDataAddr = "https://s-media-cache-ak0.pinimg.com/236x/76/61/8d/76618d35a6820a8a83e09dc1b0bd5333.jpg"
+
 
 address = "ny ny!"
 
-imgDataKey = imgDataAddr
+imgDataKey = imgDataAddr2
 
 
 
@@ -20,6 +28,17 @@ View = {
   sections: [
     {
       items: [
+        {
+          type: "button",
+          text: "reloadd",
+          style: {
+            background: "#f4bb00",
+            size: "24"
+          },
+          action: {
+            type: "$reload"
+          }
+        },
         {
           type: "label",
           text: "Address"
