@@ -2,9 +2,9 @@ require_relative "map"
 
 # sample map data (center + pins)
 
-MapSampleElements = {}
-
-MSE = MapSampleElements
+# MapSampleElements = {}
+# MSE = MapSampleElements
+MSE = {}
 
 # this is your map center
 

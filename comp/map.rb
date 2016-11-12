@@ -39,7 +39,8 @@ def Map(center:, pins:)
     pins: render_pins(pins),
     style: {
       width: "100%",
-      height: "400"
+      height: "700",
+      # type: "satellite_flyover"
     }
   }
 

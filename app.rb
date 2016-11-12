@@ -13,35 +13,53 @@ require_relative 'env'
 # }
 
 
+module Jason
+  jason = ""
+
+  jason = {
+    head: {
+      title: "SampleApp"
+    }.merge(Head)
+  }
+
+  jason.merge!(
+    body: View
+  ) if defined?(View)
+
+  Jason = jason
+end
+
+
+# freeze
+
+
 class App < Roda
   plugin :json
 
-  route do |r|
+  include Jason
 
+  route do |r|
+    @rand = rand 10**10
     # just a json root
     #
     r.root {
 
       # to_json({
       {
-        "$jason": {
-          head: {
-            title: "SampleApp"
-          },
-          body: View
-        }
+        "$jason": Jason
       # })
       }
 
     }
 
-    r.get("image1") {
-      response["content-type"] = "image/jpeg"
-      api_key = "AIzaSyDDS8H3WiuXrlxLNVroLxYBIF8XZ1trm4s"
-      resp = Net::HTTP.get_response URI "https://maps.googleap2.jpgis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-      &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&key=#{api_key}&a=a.jpg"
-      resp.body
-    }
+
+    # r.get("image1") {
+    #   response["content-type"] = "image/jpeg"
+    #   api_key = "AIzaSyDDS8H3WiuXrlxLNVroLxYBIF8XZ1trm4s"
+    #   resp = Net::HTTP.get_response URI "https://maps.googleap2.jpgis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+    #   &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&key=#{api_key}&a=a.jpg"
+    #   resp.body
+    # }
 
 
     # use roda to generate your json-based-app
