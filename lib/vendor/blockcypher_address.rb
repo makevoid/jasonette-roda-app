@@ -58,7 +58,7 @@ class BCypherAddress
   # - get_outputs - ------------
 
   def get_outputs(transactions)
-    transactions.map do |tx|
+    get_transactions.map do |tx|
       tx = sym_keys tx
 
       # puts "tx: \n#{tx}"
@@ -135,6 +135,9 @@ class BCypherAddress
     end
     # addr["txs"] # for address_full
     #
+
+    puts "BCAddress.get_transactions - addess details: #{addr}"
+
     addr["txrefs"]
   end
 
