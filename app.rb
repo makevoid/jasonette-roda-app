@@ -1,5 +1,10 @@
 require_relative 'env'
 
+# old stuff:
+#
+# module Jason; end
+# require_relative 'jason'
+
 # def view2
 #   JSON.parse File.read "old_app.json"
 # end
@@ -13,30 +18,49 @@ require_relative 'env'
 # }
 
 
-module Jason
-  jason = ""
 
-  jason = {
-    head: {
-      title: "SampleApp"
-    }.merge(Head)
-  }
+# -----------
 
-  jason.merge!(
-    body: View
-  ) if defined?(View)
+# app_name = "camera"
 
-  Jason = jason
-end
+# require_relative "sample_apps/#{app_name}"
 
+
+
+# -----------
 
 # freeze
+
+# external app loading
+#
+def AppFn(app_name)
+  # TODO: pre-require them all but trigger / include the code only if that specific route is executed
+
+  begin
+    require_relative "sample_apps/#{app_name}"
+  rescue Exception => e
+    # TODO: read all the apps
+    # app_names = Dir.glob("sample_apps/*.rb").map{File.basename...}).join(", ")
+    raise e.class, "App Errored during Require - app_name: #{app_name} - error: #{e.message} - stacktrace: \n#{e.backtrace.join("\n")}" # "...- #{app_names}"  # better error
+  end
+
+  app_name = app_name.capitalize # camelize just 1 word names
+  app_name = Inflecto.camelize app_name # camelizes correctly - requires inflecto - an external dependency (gem)
+  # raise "SampleAppNotFoundError - Error - App Name: '#{app_name}' not found in `sample_apps` directory" unless Module.const_defined? app_name.to_sym
+  # raise app_name.inspect
+
+  jasonApp = Kernel.const_get app_name
+
+  Kernel.const_set "JasonApp", jasonApp
+
+  JasonApp
+end
 
 
 class App < Roda
   plugin :json
 
-  include Jason
+  # include Jason
 
   route do |r|
     @rand = rand 10**10
@@ -44,24 +68,101 @@ class App < Roda
     #
     r.root {
 
-      # to_json({
+      # # to_json({
+      # {
+      #   "$jason": Jason
+      # # })
+      # }
+
+      # TODO: comment these - these are not commented for testing purposes
+      #
+      # r.proxy "/apps/camera" - a "clientside proxy" - AppFn #logicalCode
+      Jason = AppFn "camera" # returns a jason JSON app
+      Jason = AppFn "chat"
+      # done
+      Jason = AppFn "hello_world"
+      Jason = AppFn "hello_world_refresh"
+      Jason = AppFn "hello_image"
+      # Jason = AppFn "op_return_contract"
+      Jason = AppFn "op_return_contract_marriage"
       {
         "$jason": Jason
       # })
       }
-
     }
 
-    r.on(":app") {
-      r.get {
-        r.is {
-          {
-            "$jason": Jason
+    r.on("apps") {
+
+      r.on(":app_name") { |app_name|
+        # TODO: pre-require them all but trigger / include the code only if that specific route is executed
+        require_relative "sample_apps/#{app_name}"
+
+        Kernel.const_set "JasonApp", Kernel.const_get(app_name.capitalize) # simple version
+
+        # ---------------------------
+
+        # --- sample_apps ---
+
+        # ---------------------------
+
+        # chat
+
+        # ---------------------------
+
+        # camera
+
+        # ---------------------------
+
+        # weather
+
+        # ---------------------------
+
+        # map
+
+        # ---------------------------
+
+        # list view
+
+        # ---------------------------
+
+        # tabbed app
+
+        # ---------------------------
+
+        # fullscreen app
+
+        # ---------------------------
+
+        # op_return_contract
+
+        # ---------------------------
+
+
+        r.get {
+          r.is {
+            {
+              "$jason": JasonApp
+            }
           }
         }
       }
     }
 
+
+    APP_ENV = "development"
+    if APP_ENV == "development"
+
+      r.on("dev") {
+        r.on("cache") {
+          r.get("clear") {
+            # clears redis cache
+            R.flushdb #!
+            { success: true }
+          }
+        }
+      }
+
+    end
 
     # r.get("image1") {
     #   response["content-type"] = "image/jpeg"

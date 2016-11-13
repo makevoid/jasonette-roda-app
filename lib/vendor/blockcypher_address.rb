@@ -21,7 +21,6 @@ end
 
 # gem dependencies
 
-require 'blockcypher'
 
 # main class definition
 
@@ -30,6 +29,8 @@ require 'blockcypher'
 #  tx: 13533bb59070836539cd15a9fe781882718c57ba2b299c0c3f9997f103928a81 - contracts like these (name: abcd -> address) - contract not defined completely but connected to a scriptable interface to an immutable datastore (a bitcoin address referring some other op return space to write details about the contract - the 13533.. tx can be an identifier, indicating the "start" of the contract)
 
 class BCypherAddress
+  require 'blockcypher'
+
   include HashUtils
   include Logging
 
@@ -58,7 +59,7 @@ class BCypherAddress
   # - get_outputs - ------------
 
   def get_outputs(transactions)
-    get_transactions.map do |tx|
+    transactions.map do |tx|
       tx = sym_keys tx
 
       # puts "tx: \n#{tx}"
@@ -105,7 +106,12 @@ class BCypherAddress
 
     outputs = get_outputs txs
 
+    outputs.uniq!
+
+    outputs.map!{ |output| sym_keys output }
+
     op_returns = outputs.select do |out|
+
       out[:script_type] == "null-data"
       # filters all outputs, gets all op_return data (data_string) from transaction  (type == "data", null-data in blockcypher's api)
     end.map{ |out| out[:data_string] }
@@ -138,7 +144,16 @@ class BCypherAddress
 
     puts "BCAddress.get_transactions - addess details: #{addr}"
 
-    addr["txrefs"]
+    # config
+    #
+    # to allow all the transactions (gets non-confirmed op-return messages as well)
+    allow_unconfirmed = true
+
+    transactions  = addr["txrefs"] || []
+
+    transactions += addr["unconfirmed_txrefs"] || []  if allow_unconfirmed
+
+    transactions
   end
 
   alias :get_tx :get_transactions

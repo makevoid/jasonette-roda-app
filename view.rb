@@ -79,7 +79,7 @@ Container = {
     },
   },
   sections: [{
-    "items": Items
+    items: Items
   }]
 }
 
@@ -113,3 +113,91 @@ Head = {
 Head = {} if NO_HEAD
 
 # View
+
+
+# SimpleLayout / RefreshLayout / DevLayout
+
+
+def RefreshLayout(elements)
+  items = [
+      {
+          type: "label",
+          text: "Refresh",
+          action: {
+              type: "$reload"
+          }
+      },
+      # {
+      #     type: "label",
+      #     text: "another label..."
+      # }
+  ]
+
+  # elements for content get added to 'items' here
+  items += elements
+
+  {
+    header: {
+     title: "Componentized Jasonette App",
+     style: {
+       shy: true
+     }
+    },
+    sections: [
+     {
+       items: items
+     }
+    ]
+  }
+end
+
+# SimpleLayout = RefreshLayout
+# DevLayout    = RefreshLayout
+
+
+# OPReturnView
+#
+# -------
+
+require_relative 'lib/op_return'
+
+# config
+
+address = "1FVfHt4erqCtroBaDyVc9rAsyYAdheF4tF" # simple jsons
+# address = "12RXhCqxnXgJyfJLL2mvcqT3jCQ2o6rMAR" # marriage certificate
+# address = "1..." # ownership certificate (car) #sample1
+# address = "1..." # ownership certificate (boat) #sample2
+# address = "1..." # ownership certificate (house) #sample3
+# address = "1..." # incorporation certificate (company) #sample4
+# address = "1..." # employment contract #sample5
+# address = "1..." # license plate registration (car/motorbike) #sample6
+# address = "1..." # student degree #sample7
+# address = "1..." #
+
+
+# components
+
+def OPRLabel(text:)
+  {
+    type: "label",
+    text: text
+  }
+end
+
+def OPReturnView(op_returns)
+  view = []
+  op_returns.each do |op_return|
+    view << OPRLabel(text: op_return)
+  end
+  view
+end
+
+
+# standard Label
+
+def Label(text, options: {})
+  {
+    type: "label",
+    text: text
+  }.merge(options)
+end
