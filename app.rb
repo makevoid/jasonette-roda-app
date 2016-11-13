@@ -52,6 +52,16 @@ class App < Roda
 
     }
 
+    r.on(":app") {
+      r.get {
+        r.is {
+          {
+            "$jason": Jason
+          }
+        }
+      }
+    }
+
 
     # r.get("image1") {
     #   response["content-type"] = "image/jpeg"
