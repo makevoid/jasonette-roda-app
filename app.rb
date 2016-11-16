@@ -41,7 +41,7 @@ def AppFn(app_name)
   rescue Exception => e
     # TODO: read all the apps
     # app_names = Dir.glob("sample_apps/*.rb").map{File.basename...}).join(", ")
-    raise e.class, "App Errored during Require - app_name: #{app_name} - error: #{e.message} - stacktrace: \n#{e.backtrace.join("\n")}" # "...- #{app_names}"  # better error
+    raise e.class, "App Errored during Require - app_name: #{app_name} - error: #{e.message} - stacktrace: \n#{e.backtrace && e.backtrace.join("\n")}" # "...- #{app_names}"  # better error
   end
 
   app_name = app_name.capitalize # camelize just 1 word names
@@ -56,9 +56,38 @@ def AppFn(app_name)
   JasonApp
 end
 
+# ------------
+# chat app logic
+
+def me(message)
+  {
+    avatar: "https://s3-us-west-2.amazonaws.com/fm.ethan.jason/jason.png",
+    text: message,
+  }
+end
+
+def bot(message)
+  {
+    avatar: "https://s3-us-west-2.amazonaws.com/fm.ethan.jason/bot.png",
+    text: message,
+  }
+end
+
+MESSAGES = [
+  bot("Hi, what's your name?"),
+]
+
+BM = {} # bot memory
+
+# chat app logic
+# -----------------------
+
+Oj.default_options = {:mode => :compat }
 
 class App < Roda
-  plugin :json
+  # plugin :json # default, unindented json
+  plugin :json, serializer: proc{ |o| Oj.dump o, indent: 2 }
+  # prettified / beautified (w/ oj gem)
 
   # include Jason
 
@@ -78,19 +107,27 @@ class App < Roda
       #
       # r.proxy "/apps/camera" - a "clientside proxy" - AppFn #logicalCode
       Jason = AppFn "camera" # returns a jason JSON app
-      Jason = AppFn "chat"
+      # Jason = AppFn "chat"
+
       # done
       Jason = AppFn "hello_world"
       Jason = AppFn "hello_world_refresh"
       Jason = AppFn "hello_image"
-      # Jason = AppFn "op_return_contract"
-      Jason = AppFn "op_return_contract_marriage"
+      Jason = AppFn "op_return_contract"
+      # Jason = AppFn "op_return_contract_marriage"
+      Jason = AppFn "chat"
+      Jason = AppFn "company_details"
+      Jason = AppFn "weather"
+      Jason = AppFn "test"
+      # Jason = AppFn "hello_world_kb" # laser cat
+
       {
         "$jason": Jason
       # })
       }
     }
 
+    # mount multiple apps at once - simplified
     r.on("apps") {
 
       r.on(":app_name") { |app_name|
@@ -144,6 +181,55 @@ class App < Roda
               "$jason": JasonApp
             }
           }
+        }
+      }
+    }
+
+    # chat app API
+    #
+    r.on("messages") {
+
+      def interpret_input(message)
+        if MESSAGES.size < 3
+          BM[:username] = message
+          return "Hi #{message} ! Nice to meet you, how are you?"
+        end
+
+        if message =~ /send/i
+          BM[:status] = :send
+          return "Ok #{BM[:username]}! To who should I send money to?"
+        end
+
+        if BM[:status] == :send
+          BM[:send_to] = message
+          BM[:status] = :send_amount
+          return "How much do you want to send in $?"
+        end
+
+        if BM[:status] == :send_amount
+          amount = message
+          BM[:status] = nil
+          return "Sending #{amount}$ to #{BM[:send_to]}! ... Done! Money Sent. Goodbye! #{BM[:send_to] = nil && ""}"
+        end
+
+        "Hi, you can send money by saying 'send'"
+      end
+
+
+      r.get {
+        {
+          messages: MESSAGES
+        }
+      }
+
+      r.post {
+        message_user = r.params["text"]
+        message = me message_user
+        MESSAGES << message
+        message = bot interpret_input(message_user)
+        MESSAGES << message
+        {
+          messages: MESSAGES
         }
       }
     }

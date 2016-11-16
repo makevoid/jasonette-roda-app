@@ -6,11 +6,11 @@ end
 
 def MapPinTemplate(title:, coord:, selected: false, description: "")
   {
-    title: "This is a pin",
-    description: "It really is.",
+    title:title,
+    description: description,
     coord: map_point(coord),
     style: {
-      selected: "true",
+      selected: (!!selected).inspect,
     },
   }
 end
@@ -21,13 +21,13 @@ def render_pins(pins)
       title:        pin.fetch(:title),
       coord:        pin.fetch(:coord),
       selected:     pin[:selected],
-      description:  pin[:description],
+      description:  pin[:description] || "",
     )
   end
 end
 
 
-def Map(center:, pins:)
+def Map(center:, pins:, map_type: "satellite_flyover") # satellite is jasonette's default - see https://jasonette.github.io/documentation/components/#map  for more info
 
   {
     type: "map",
@@ -40,7 +40,7 @@ def Map(center:, pins:)
     style: {
       width:  "100%",
       height: "700",
-      # type: "satellite_flyover"
+      type:   map_type
     }
   }
 
