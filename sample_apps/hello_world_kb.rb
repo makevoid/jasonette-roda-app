@@ -36,6 +36,7 @@ end
 # -----------------------------
 
 
+
 AppTitle = "Hello World"
 
 IMAGE_URLS = {
@@ -45,15 +46,13 @@ IMAGE_URLS = {
 
 
 
-
-
 HelloWorldKb = {
   head: {
-    title: "image murka",
+    title: "Lazer Cat",
   },
   body: Section([
     Label(AppTitle),
-    Label("image example:"),
+    Label("jasonette image example:"),
     Image(:laser_cat),
     RefreshButton(),
   ]),
