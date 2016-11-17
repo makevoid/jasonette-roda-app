@@ -67,6 +67,55 @@ enjoy!
 
 ---
 
+### Sample Hello world Code
+
+
+```ruby
+
+AppTitle = "Hello World"
+
+IMAGE_URLS = {
+  antani: "https://upload.wikimedia.org/wikipedia/it/thumb/1/1b/Amicimiei-Tognazzi.jpg/310px-Amicimiei-Tognazzi.jpg", # antani is a word that makes no sense (like foo)
+  laser_cat: "http://www.gifbin.com/bin/052011/reverse-1306235375_cat_vs_laser_pointer.gif"
+}
+
+
+
+HelloWorldKb = {
+  head: {
+    title: "Lazer Cat",
+  },
+  body: Section([
+    Label(AppTitle),
+    Label("jasonette image example:"),
+    Image(:laser_cat),
+    RefreshButton(),
+  ]),
+}
+
+```
+
+
+### Simple Components definition
+
+
+Take a look at:
+
+#### https://github.com/makevoid/jasonette-roda-app/blob/master/comp/tags.rb
+
+
+it's a win-win
+
+
+#### Output:
+
+https://github.com/makevoid/jasonette-roda-app/blob/master/dist/hello_world_kb.json
+
+
+make sure to check out more/others (more complex but more interesting) examples and try to run jasonette on your device!
+
+---
+
 
 Note that the app will error complaining about config files if they're not copied (`./setup`) a fork that doesn't require those config files is <much> appreciated ;)
 
