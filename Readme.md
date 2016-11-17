@@ -7,7 +7,18 @@ Jasonette server based roda app
 
 ---
 
-To run the app run:
+You can use the components already prebuild for you in dist to test them out.
+
+
+If you want to re-build them (`ruby build.rb`) you need to perform a quick setup first:
+
+
+---
+
+Assuming you have ruby installed (and bundler, `gem i bundler`)
+
+
+Then, to install the dependencies run:
 
 
     bundle
@@ -18,7 +29,12 @@ copy the (empty) default config files via:
     ./setup
 
 
-that will install the dependencies, then
+this is to re-build the components in dist
+
+ ruby build.rb
+
+
+or/and this is to start the interactive app / server
 
     rackup
 
