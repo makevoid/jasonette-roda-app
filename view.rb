@@ -1,5 +1,16 @@
+# THIS IS SPARTA!
+
+# this file has been deprecated - remove used code (libs) from it and drop the rest
+
+# this file has not been cleaned up at all -- sorry!
+
+
+
+
 # main view and main app data
 
+
+# this is just an url (container) example - just an hash, key, value ... useful to name links (link id - #shortUrls)
 URLS = {
   home:    "https://raw.githubusercontent.com/Jasonette/Twitter-UI-example/master/home.json",
   screen1: "https://raw.githubusercontent.com/Jasonette/Twitter-UI-example/master/home.json",
@@ -8,8 +19,11 @@ URLS = {
 Title = "Componentized Jasonette App"
 
 
-# hero view
+# Sample Components
+# -------------
 
+# hero view
+#
 Body = Hero(
   title: Title,
   text:  "Template generated via Ruby Components",
@@ -33,6 +47,8 @@ Body = S3ImagesView
 #     type: "$reload",
 #   },
 # }
+
+
 
 action_reload = {
   type: "$reload"
@@ -94,26 +110,27 @@ View = Container
 #   body:  Body,
 # )
 
-Head = {
-  description: "Tap to open up camera",
-  actions: {
-    "$load": {
-      type: "$media.camera",
-      options: {
-        edit: "true",
-        type: "video"
-      },
-      success: {
-        type: "$render"
-      }
-    }
-  }
-}
+# Head = {
+#   description: "Tap to open up camera",
+#   actions: {
+#     "$load": {
+#       type: "$media.camera",
+#       options: {
+#         edit: "true",
+#         type: "video"
+#       },
+#       success: {
+#         type: "$render"
+#       }
+#     }
+#   }
+# }
+#
+# Head = {} if NO_HEAD
 
-Head = {} if NO_HEAD
+# ----------------
 
 # View
-
 
 # SimpleLayout / RefreshLayout / DevLayout
 
@@ -166,12 +183,61 @@ require_relative 'lib/op_return'
 address = "1FVfHt4erqCtroBaDyVc9rAsyYAdheF4tF" # simple jsons
 # address = "12RXhCqxnXgJyfJLL2mvcqT3jCQ2o6rMAR" # marriage certificate
 # address = "1..." # ownership certificate (car) #sample1
-# address = "1..." # ownership certificate (boat) #sample2
-# address = "1..." # ownership certificate (house) #sample3
+
+# ------
+
+# owner_prev:
+# owner_next:
+
+# input owner -> output owner
+
+# IMPORTANT
+
+# EXAMPLE BITCOIN OP RETURN CONTRACTS (certificates + address details / script)
+
+# they probably still require a legal agreement ( email / PDF over email / PDF + torrent hash / ipfs hash ) - see imogelius
+
+# -----
+
+{ car_brand: "", car_make: "", year: "", license_plate_number: "", software_version: "", software_uuid: "" }
+
+# -----
+
+address = "1..." # ownership certificate (boat) #sample2
+
+{ brand: "", make: "", year:"", radio_id: "" }
+
+# -----
+
+address = "1..." # ownership certificate (house) #sample3
+
+{ mq: "", floors: "", gps_coords_center: "", gps_coords_polygon: "" }
+
+# -----
+
 # address = "1..." # incorporation certificate (company) #sample4
+
+{ founder_1: "",  founder_2: "", founder_3: "", address: "" }
+
+# -----
+
 # address = "1..." # employment contract #sample5
+
+{ employer_company_id: "", employee_eid: "" }
+
+# -----
+
+
 # address = "1..." # license plate registration (car/motorbike) #sample6
+
+{ license_plate_number: "", rider_eid: "" }
+
+
 # address = "1..." # student degree #sample7
+
+{ student_eid: "", student_uni_id: "", univeristy: "" }
+
+
 # address = "1..." #
 
 

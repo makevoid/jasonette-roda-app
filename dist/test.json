@@ -1,0 +1,32 @@
+{
+  "head":{
+    "title":"image murka"
+  },
+  "body":{
+    "sections":[
+      {
+        "items":[
+          {
+            "type":"label",
+            "text":"Hello World"
+          },
+          {
+            "type":"label",
+            "text":"image example:"
+          },
+          {
+            "type":"image",
+            "url":"http://www.gifbin.com/bin/052011/reverse-1306235375_cat_vs_laser_pointer.gif"
+          },
+          {
+            "type":"label",
+            "text":"Refresh",
+            "action":{
+              "type":"$reload"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

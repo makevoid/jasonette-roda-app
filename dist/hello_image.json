@@ -1,0 +1,32 @@
+{
+  "head":{
+    "title":"Hello World"
+  },
+  "body":{
+    "sections":[
+      {
+        "items":[
+          {
+            "type":"label",
+            "text":"Hello World"
+          },
+          {
+            "type":"label",
+            "text":"image example:"
+          },
+          {
+            "type":"image",
+            "url":"https://upload.wikimedia.org/wikipedia/it/thumb/1/1b/Amicimiei-Tognazzi.jpg/310px-Amicimiei-Tognazzi.jpg"
+          },
+          {
+            "type":"label",
+            "text":"Refresh",
+            "action":{
+              "type":"$reload"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
