@@ -115,7 +115,9 @@ class App < Roda
       Jason = AppFn "hello_image"
 
       # ------------
-      Jason = AppFn "op_return_contract"
+      # these two components (op_return_...) make network requests (blockcypher api)
+      #
+      # Jason = AppFn "op_return_contract"
       # Jason = AppFn "op_return_contract_marriage"
       Jason = AppFn "chat"
       Jason = AppFn "company_details"

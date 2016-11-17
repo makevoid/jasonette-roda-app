@@ -28,3 +28,13 @@ require_relative 'comp/tabbed_layout'
 # main view
 
 require_relative 'view'
+
+
+
+# --- TODO: suppress warnings (requires ruby 2.4+)
+
+# if RUBY_VERSION > 2.4
+
+# Warning.silence /already initialized constant/
+
+# gem "warning"
