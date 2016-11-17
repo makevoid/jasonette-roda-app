@@ -34,9 +34,25 @@ and visit http://localhost:9292 or the equivalent local host
 
 will bind on any port, `-p` will let you change the port
 
----
-
-Note that the app will error complaining about config files
-
 
 ---
+
+run with `rerun` to have simple code-reloading:
+
+`rerun "**/*.{rb}" -- rackup -o 0.0.0.0`
+
+or a with a more detailed command:
+
+`rerun -s KILL -p "**/*.{rb}" -- bundle exec rackup -o 0.0.0.0`
+
+enjoy!
+
+---
+
+
+Note that the app will error complaining about config files if they're not copied (`./setup`) a fork that doesn't require those config files is <much> appreciated ;)
+
+
+---
+
+@makevoid
