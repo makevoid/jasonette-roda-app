@@ -9,6 +9,8 @@ Jasonette server based roda app
 
 You can use the components already prebuild for you in dist to test them out.
 
+You can load them directly from github - example: https://raw.githubusercontent.com/makevoid/jasonette-roda-app/master/dist/hello_world_kb.json (made by @kristinab lol)
+
 
 If you want to re-build them (`ruby build.rb`) you need to perform a quick setup first:
 
