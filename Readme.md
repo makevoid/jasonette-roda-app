@@ -112,7 +112,9 @@ it's a win-win
 https://github.com/makevoid/jasonette-roda-app/blob/master/dist/hello_world_kb.json
 
 
-make sure to check out more/others (more complex but more interesting) examples and try to run jasonette on your device!
+make sure to check out more/others (more complex but more interesting) examples and try to run jasonette on your device so that all of this makes sense! 
+
+I suggest to put a ngrok url (paid) or similar proxying/forwarding solution / custom dns url on it or it would be nice for jasonette to support 1 redirect
 
 ---
 
