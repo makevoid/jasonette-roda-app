@@ -13,7 +13,7 @@ logo = logo_url
 IMAGE_URLS[:logo] = logo
 
 # location (place)
-one_canada_square = { lat: 51.504855, lng: -0.019441 }
+one_canada_square = { lat: 51.504855, lng: -0.019441 } # 51.504855,-0.019441
 
 
 

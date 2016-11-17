@@ -113,6 +113,7 @@ class App < Roda
       Jason = AppFn "hello_world"
       Jason = AppFn "hello_world_refresh"
       Jason = AppFn "hello_image"
+<<<<<<< Updated upstream
       Jason = AppFn "op_return_contract"
       # Jason = AppFn "op_return_contract_marriage"
       Jason = AppFn "chat"
@@ -121,6 +122,10 @@ class App < Roda
       Jason = AppFn "test"
       # Jason = AppFn "hello_world_kb" # laser cat
 
+=======
+      # # Jason = AppFn "op_return_contract"
+      # Jason = AppFn "op_return_contract_marriage"
+>>>>>>> Stashed changes
       {
         "$jason": Jason
       # })
