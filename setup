@@ -1,6 +1,8 @@
-echo "are you sure you want to override the default config files?"
+# echo "are you sure you want to override the default config files?"
+#echo "----"
 
-echo "----"
+# cp -n
+echo "Setup started"
 
 echo "press any key to continue or ctrl-C to exit"
 
@@ -10,7 +12,7 @@ read antani
 
 # -----
 
-cp config/main.default.json config/main.json
-cp config/s3_images_path.default.json config/s3_image_path.json
+cp -n config/main.default.json config/main.json
+cp -n config/s3_images_path.default.txt config/s3_images_path.txt
 
 echo "setup done!"
