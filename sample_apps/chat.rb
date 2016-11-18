@@ -1,12 +1,13 @@
 AppTitle = "Hello World"
 
-addr = "http://192.168.1.2:3002/"
+addr   = "http://192.168.1.2:3002/"
 # addr = "http://192.168.1.2:3000/"
 # addr = "http://mkvd.eu.ngrok:3002/"
 
 Chat = {
   head: {
     title: AppTitle,
+
     actions: {
       "$foreground": {
         trigger: "reload",
@@ -38,6 +39,7 @@ Chat = {
         }
       }
     },
+
     templates: {
       body: {
         style: {
@@ -73,6 +75,7 @@ Chat = {
             }
           }
         ],
+        
         footer:{
           input: {
             name: "message",

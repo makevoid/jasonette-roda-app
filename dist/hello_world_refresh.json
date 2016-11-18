@@ -1,24 +1,26 @@
 {
-  "head":{
-    "title":"Hello World"
-  },
-  "body":{
-    "sections":[
-      {
-        "items":[
-          {
-            "type":"label",
-            "text":"Hello World"
-          },
-          {
-            "type":"label",
-            "text":"Refresh",
-            "action":{
-              "type":"$reload"
+  "$jason":{
+    "head":{
+      "title":"Hello World"
+    },
+    "body":{
+      "sections":[
+        {
+          "items":[
+            {
+              "type":"label",
+              "text":"Hello World"
+            },
+            {
+              "type":"label",
+              "text":"Refresh",
+              "action":{
+                "type":"$reload"
+              }
             }
-          }
-        ]
-      }
-    ]
+          ]
+        }
+      ]
+    }
   }
 }

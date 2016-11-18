@@ -1,17 +1,19 @@
 {
-  "head":{
-    "title":"Hello World"
-  },
-  "body":{
-    "sections":[
-      {
-        "items":[
-          {
-            "type":"label",
-            "text":"Hello World"
-          }
-        ]
-      }
-    ]
+  "$jason":{
+    "head":{
+      "title":"Hello World"
+    },
+    "body":{
+      "sections":[
+        {
+          "items":[
+            {
+              "type":"label",
+              "text":"Hello World"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

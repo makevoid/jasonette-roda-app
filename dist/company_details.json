@@ -1,61 +1,63 @@
 {
-  "head":{
-    "title":"Company Details"
-  },
-  "body":{
-    "header":{
-      "title":"Company Details",
-      "style":{
-        "shy":true
-      }
+  "$jason":{
+    "head":{
+      "title":"Company Details"
     },
-    "sections":[
-      {
-        "items":[
-          {
-            "type":"label",
-            "text":"Company Details"
-          },
-          {
-            "type":"label",
-            "text":"map example: - AppliedBlockchain - Blockchain Technologies"
-          },
-          {
-            "type":"image",
-            "url":"http://appliedblockchain.co.uk/wp-content/uploads/2016/10/appliedblockchain_wide_color.png"
-          },
-          {
-            "type":"map",
-            "region":{
-              "coord":"51.504855, -0.019441",
-              "width":"100",
-              "height":"100"
+    "body":{
+      "header":{
+        "title":"Company Details",
+        "style":{
+          "shy":true
+        }
+      },
+      "sections":[
+        {
+          "items":[
+            {
+              "type":"label",
+              "text":"Company Details"
             },
-            "pins":[
-              {
-                "title":"Applied Blockchain - Level39",
-                "description":"",
+            {
+              "type":"label",
+              "text":"map example: - AppliedBlockchain - Blockchain Technologies"
+            },
+            {
+              "type":"image",
+              "url":"http://appliedblockchain.co.uk/wp-content/uploads/2016/10/appliedblockchain_wide_color.png"
+            },
+            {
+              "type":"map",
+              "region":{
                 "coord":"51.504855, -0.019441",
-                "style":{
-                  "selected":"false"
+                "width":"100",
+                "height":"100"
+              },
+              "pins":[
+                {
+                  "title":"Applied Blockchain - Level39",
+                  "description":"",
+                  "coord":"51.504855, -0.019441",
+                  "style":{
+                    "selected":"false"
+                  }
                 }
+              ],
+              "style":{
+                "width":"100%",
+                "height":"700",
+                "type":"satellite_flyover"
               }
-            ],
-            "style":{
-              "width":"100%",
-              "height":"700",
-              "type":"satellite_flyover"
+            },
+            {
+              "type":"label",
+              "text":"Refresh",
+              "action":{
+                "type":"$reload"
+              }
             }
-          },
-          {
-            "type":"label",
-            "text":"Refresh",
-            "action":{
-              "type":"$reload"
-            }
-          }
-        ]
-      }
-    ]
+          ]
+        }
+      ]
+    }
   }
 }

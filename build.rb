@@ -2,7 +2,8 @@ require_relative 'app'
 
 def build_app(app_name)
   jason = AppFn app_name
-  jason_json = Oj.dump jason, indent: 2 
+  jason = { "$jason": jason }
+  jason_json = Oj.dump jason, indent: 2
   File.open("dist/#{app_name}.json", "w") do |f|
     f.write jason_json
   end
