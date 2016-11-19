@@ -264,12 +264,13 @@ class App < Roda
 
       # Address that start with Q and have lenght of x should be ipfs addresses.
 
-
+      # ----
 
       # ( https://en.bitcoin.it/wiki/Base58Check_encoding - https://github.com/ipfs/faq/issues/22#issuecomment-252084545 )
 
       # added QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH test2.txt
 
+      # ----
 
       # hash "parsing" (grepping, getting)
       #
@@ -284,13 +285,16 @@ class App < Roda
       # 50 shades of ipfs regexes
       #  5 shades of ipfs regexes
 
-      # --->
+      # ---
 
       ipfs_resp_hash_match = output.match hash_matcher
       ipfs_resp_hash = ipfs_resp_hash_match[1] # takes the first matched entries (matched by the matcher regex - #regular-expressions)
 
+
       # rocket burst
       # >>>>> # >>>> # >>>> # >> # > # ----------- ipfs -----> ( moon )
+
+      # -----------------
 
       # setup command: ipfs init
 
@@ -307,6 +311,8 @@ class App < Roda
       ipfs_hash =
       puts "-"*80
 
+      # -----------------
+
       puts "ipfs_url:"
       puts ipfs_url
       puts "-"*80
@@ -314,8 +320,6 @@ class App < Roda
       puts "ipfs_url_ipfsio:"
       puts ipfs_url_ipfsio
       puts "-"*80
-
-
 
       # -------------
 
