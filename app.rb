@@ -223,6 +223,7 @@ class App < Roda
       puts "ipfs_add - adding file from the HTTP request body (multipart request)"
       data_raw = r.body.read
 
+      # important: use a fixed paths image for security
       paths_image = "/tmp/image.jpg"
 
       File.open(path_image, "w:binary") do |file|
@@ -249,6 +250,8 @@ class App < Roda
       ipfs = "/Users/makevoid/apps/go-ipfs/ipfs" # dev path osx
       ipfs_resp_hash = `#{ipfs} add #{paths_image}`
 
+      # this command is not ideal but we'll leave at it is  ---------
+      # ideally you want to call an ipfs local rpc method or use a lower level api to communicate to ipfs # shelling out from your program is simple, powerful but it's not often the best/recommended way to interact with software :D !
 
       # setup
       #
