@@ -20,6 +20,8 @@ build_app "company_details"
 build_app "weather"
 build_app "test"
 build_app "hello_world_kb" # laser cat
+build_app "ipfs_upload"
+build_app "ipfs_upload_add"
 
 #
 

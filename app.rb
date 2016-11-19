@@ -124,6 +124,7 @@ class App < Roda
       Jason = AppFn "weather"
       Jason = AppFn "test"
       Jason = AppFn "hello_world_kb" # laser cat
+      Jason = AppFn "ipfs_upload"
 
       # # Jason = AppFn "op_return_contract"
       # Jason = AppFn "op_return_contract_marriage"
@@ -190,6 +191,45 @@ class App < Roda
         }
       }
     }
+
+
+    # IPFS file upload API
+
+    # `ipfs add local_filename.ext`
+
+    r.on("ipfs_add") {
+
+      puts "IPFS ADD!"
+
+      puts r.params.inspect
+
+      # data_raw = r.params["data"]
+      #
+      # data_raw = [1..-2].gsub(/\s+/, '')
+      #
+      # data_raw = data_raw.scan(/../).map { |x| x.hex.chr }.join
+      #
+      # raise data_raw.bytes[0]
+      #
+      # File.open("/tmp/image.jpg", "w:binary") do |file|
+      #   file.write data_raw
+      # end
+      #
+      # raise data_raw.inspect
+
+      # TODO: push the file to IPFS
+      #
+      # TODO: save file to local_filename.ext (or use tempfile path - so the file is not copied over...)
+      # `ipfs add local_filename.ext`
+      # `ipfs add tmp_path/tmp_filename.ext`
+
+      jason_app = AppFn "ipfs_upload_add"
+      {
+        "$jason": jason_app
+      }
+    }
+
+
 
     # chat app API
     #

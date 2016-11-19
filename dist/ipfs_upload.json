@@ -1,0 +1,44 @@
+{
+  "head":{
+    "title":"IPFS Upload App",
+    "actions":{
+      "$load":{
+        "type":"$media.camera",
+        "options":{
+          "quality":"0.2"
+        },
+        "success":{
+          "type":"$network.upload",
+          "options":{
+            "url":"http://mkvd.eu.ngrok.io/ipfs_add",
+            "method":"post",
+            "content_type":"image/jpeg",
+            "data":"{{$jason.data}}"
+          },
+          "success":{
+            "type":"$render"
+          }
+        }
+      }
+    }
+  },
+  "body":{
+    "sections":[
+      {
+        "items":[
+          {
+            "type":"label",
+            "text":"Image uploaded"
+          },
+          {
+            "type":"label",
+            "text":"Refresh",
+            "action":{
+              "type":"$reload"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
