@@ -201,27 +201,17 @@ class App < Roda
 
       puts "IPFS ADD!"
 
-      puts r.params.inspect
+      data_raw = r.body.read
 
-      # data_raw = r.params["data"]
-      #
-      # data_raw = [1..-2].gsub(/\s+/, '')
-      #
-      # data_raw = data_raw.scan(/../).map { |x| x.hex.chr }.join
-      #
-      # raise data_raw.bytes[0]
-      #
-      # File.open("/tmp/image.jpg", "w:binary") do |file|
-      #   file.write data_raw
-      # end
-      #
-      # raise data_raw.inspect
+      File.open("/tmp/image.jpg", "w:binary") do |file|
+        file.write data_raw
+      end
 
-      # TODO: push the file to IPFS
-      #
-      # TODO: save file to local_filename.ext (or use tempfile path - so the file is not copied over...)
-      # `ipfs add local_filename.ext`
-      # `ipfs add tmp_path/tmp_filename.ext`
+      puts "-"*80
+      ipfs = "ipfs" # default path
+      ipfs = "/Users/makevoid/apps/go-ipfs/ipfs" # dev path osx
+      puts `#{ipfs} add /tmp/image.jpg`
+      puts "-"*80
 
       jason_app = AppFn "ipfs_upload_add"
       {
