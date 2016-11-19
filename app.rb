@@ -73,11 +73,33 @@ def bot(message)
   }
 end
 
+
+
+
+# bot messages
+
 MESSAGES = [
   bot("Hi, what's your name?"),
 ]
 
 BM = {} # bot memory
+
+
+# ----------------------
+
+
+
+
+# ipfs index
+
+IPFS_IDX = []
+
+
+# -----------------------
+
+
+
+
 
 # chat app logic
 # -----------------------
@@ -198,20 +220,104 @@ class App < Roda
     # `ipfs add local_filename.ext`
 
     r.on("ipfs_add") {
-
-      puts "IPFS ADD!"
-
+      puts "ipfs_add - adding file from the HTTP request body (multipart request)"
       data_raw = r.body.read
 
-      File.open("/tmp/image.jpg", "w:binary") do |file|
+      paths_image = "/tmp/image.jpg"
+
+      File.open(path_image, "w:binary") do |file|
         file.write data_raw
       end
 
+      # -------------
+
+      # here I'm getting the ipfs url - checking which host is accessible from where I want to retrieve the file for the purpose of doing this test
+
+      # test environment configuration: -- hosts ---
+
+      ipfs_host        = "http://localhost:8080" # local machine
+      ipfs_host        = "http://#{`hostname`.strip}.local:8080" # local network (could be hostname:8080 - without the local - the easiest thing is to set it in /etc/hosts - vim /etc/hosts - add your-host-name 127.0.0.1 "DNS" (no dns, just local lookup) entry)
+      ipfs_host_ipfsio = "http://ipfs.io"
+
+      ipfs_url        = "#{ipfs_host}/ipfs/%s"
+      ipfs_url        = "#{ipfs_host}/ipfs/%s"
+      ipfs_url_ipfsio = "#{ipfs_host}/ipfs/%s"
+
       puts "-"*80
+      puts "ipfs_hash:"
       ipfs = "ipfs" # default path
       ipfs = "/Users/makevoid/apps/go-ipfs/ipfs" # dev path osx
-      puts `#{ipfs} add /tmp/image.jpg`
+      ipfs_resp_hash = `#{ipfs} add #{paths_image}`
+
+
+      # setup
+      #
+      # make sure your user can write a file in `/tmp`
+
+      # this is an example of the output of ipfs
+
+      # added QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH test2.txt
+
+      # ----
+
+      # ipfs hash properties are base58-btc encoded, which is bitcoin's extension on base58
+
+      # Address that start with Q and have lenght of x should be ipfs addresses.
+
+
+
+      # ( https://en.bitcoin.it/wiki/Base58Check_encoding - https://github.com/ipfs/faq/issues/22#issuecomment-252084545 )
+
+      # added QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH test2.txt
+
+
+      # hash "parsing" (grepping, getting)
+      #
+      hash_matcher = /added QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH /
+      hash_matcher = /added (QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH) /
+      hash_matcher = /added (\w+) /
+      hash_matcher = /added\s(\w+)\s/
+      hash_matcher = /added\s+(\w+)\s+/
+
+      # these just match words - from the ipfs output to the hash only - Qmeomf... to a value
+
+      # 50 shades of ipfs regexes
+      #  5 shades of ipfs regexes
+
+      # --->
+
+      ipfs_resp_hash_match = output.match hash_matcher
+      ipfs_resp_hash = ipfs_resp_hash_match[1] # takes the first matched entries (matched by the matcher regex - #regular-expressions)
+
+      # rocket burst
+      # >>>>> # >>>> # >>>> # >> # > # ----------- ipfs -----> ( moon )
+
+      # setup command: ipfs init
+
+      # one command - ipfs add filename
+
+      # there is no step thre...
+
+      # your file has been published to ipfs
+
+      # -----------------
+
+      puts "ran: `ipfs add <of the received file>` (executed via shell command on the local machine/server)"
+      puts "puts #{}"
+      ipfs_hash =
       puts "-"*80
+
+      puts "ipfs_url:"
+      puts ipfs_url
+      puts "-"*80
+
+      puts "ipfs_url_ipfsio:"
+      puts ipfs_url_ipfsio
+      puts "-"*80
+
+
+
+      # -------------
 
       jason_app = AppFn "ipfs_upload_add"
       {

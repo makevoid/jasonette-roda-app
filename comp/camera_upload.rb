@@ -13,12 +13,6 @@ def CameraUpload(url:, quality: 0.6, callback: :render)
     }
   end
 
-  # data = {
-  #   bucket: "fm.makevoid.jason",
-  #   path: "",
-  #   filename: "{{$jason.filename}}",
-  # }
-
   data = "{{$jason.data}}"
 
 
